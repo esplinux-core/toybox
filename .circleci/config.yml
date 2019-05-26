@@ -9,7 +9,6 @@ executors:
       VERSION: bootstrap
       ESPBUILD_VERSION: 0.01
       GHR_VERSION: v0.12.1
-      GHR_FLAGS: -prerelease -replace
 
 jobs:
   prepare:
@@ -23,8 +22,6 @@ jobs:
       - run: go mod init .
       - run: go get github.com/tcnksm/ghr@$GHR_VERSION
       - run: cp /root/go/bin/ghr ~/workspace/tools/bin
-      - run: export | grep VERSION > ~/workspace/versions.txt
-      - run: ~/workspace/tools/bin/ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/workspace/versions.txt
       - store_artifacts:
           path: ~/workspace/tools
       - persist_to_workspace:
@@ -44,7 +41,7 @@ jobs:
           command: |
             export PATH=~/workspace/tools/bin:$PATH
             espbuild toybox.conf
-            ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${VERSION} ~/toybox-*.tar.gz
+            ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/toybox-*.tar.gz ~/version.txt
       - store_artifacts:
           path: ~/workspace/toybox
 
