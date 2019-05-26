@@ -41,7 +41,7 @@ jobs:
           command: |
             export PATH=~/workspace/tools/bin:$PATH
             espbuild toybox.conf
-            ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/toybox-*.tar.gz ~/version.txt
+            ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
       - store_artifacts:
           path: ~/workspace/toybox
 
