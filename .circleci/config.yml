@@ -6,7 +6,7 @@ executors:
       - image: alpine:3.9
     working_directory: ~/
     environment:
-      VERSION: Bootstrap
+      VERSION: bootstrap
       ESPBUILD_VERSION: 0.01
       GHR_VERSION: v0.12.1
       GHR_FLAGS: -prerelease -replace
