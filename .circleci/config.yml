@@ -32,7 +32,7 @@ jobs:
   toybox:
     executor: alpine
     steps:
-      - run: apk add ca-certificates 
+      - run: apk add ca-certificates bash gcc
       - checkout
       - attach_workspace:
           at: ~/workspace
