@@ -17,7 +17,7 @@ jobs:
           command: |
             curl -LO https://github.com/esplinux/espbuild/releases/download/$ESPBUILD_VERSION/espbuild-static.tar.gz
             tar xf espbuild-static.tar.gz
-            bin/espbuild toybox.conf
+            bin/espbuild ${CIRCLE_PROJECT_REPONAME}.conf
             go mod init .
             go get github.com/tcnksm/ghr@$GHR_VERSION
             ~/go/bin/ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /package
