@@ -1,27 +1,25 @@
 version: 2.1
 
-executors:
-  esplinux-bootstrap:
+jobs:
+  build:
     docker:
       - image: esplinux/bootstrap
+    working_directory: /project
     environment:
       VERSION: "0.01"
-
-jobs:
-  toybox:
-    executor: esplinux-bootstrap
     steps:
       - checkout
       - run:
           name: Build
           shell: /bin/sh -e
           command: |
-            esp add ghr espbuild
+            esp add espbuild ghr
             echo gnu >> /etc/esp-repos
-            espbuild toybox.conf
-            ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
+            espbuild ${CIRCLE_PROJECT_REPONAME}.conf
+            ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /package
 
 workflows:
+  version: 2
   build:
     jobs:
-      - toybox
+      - build
