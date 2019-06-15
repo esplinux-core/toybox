@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 jobs:
   build:
@@ -21,9 +21,4 @@ jobs:
             go mod init .
             go get github.com/tcnksm/ghr@$GHR_VERSION
             ~/go/bin/ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /package
-
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build
+            curl -X POST https://circleci.com/api/v1.1/project/github/esplinux-core/INDEX/tree/bootstrap?circle-token=$CIRCLECI_TOKEN
