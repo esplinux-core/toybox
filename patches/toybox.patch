@@ -22,17 +22,7 @@
  
  # Grab default values for $CFLAGS and such.
  
-@@ -12,7 +12,8 @@
- UNSTRIPPED="generated/unstripped/$(basename "$OUTNAME")"
- 
- # Try to keep one more cc invocation going than we have processors
--[ -z "$CPUS" ] && CPUS=$(($(nproc 2>/dev/null)+1))
-+#[ -z "$CPUS" ] && CPUS=$(($(nproc 2>/dev/null)+1))
-+CPUS=2
- 
- # Respond to V= by echoing command lines as well as running them
- DOTPROG=
-@@ -93,9 +94,9 @@
+@@ -93,9 +93,9 @@
    echo '$BUILD $FILES $LINK'
  }
  
@@ -45,7 +35,7 @@
    echo -n "Library probe"
  
    # We trust --as-needed to remove each library if we don't use any symbols
-@@ -113,7 +114,7 @@
+@@ -113,7 +113,7 @@
    done
    rm -f generated/libprobe
    echo
