@@ -6,6 +6,14 @@
  
  # This has to be a separate file from scripts/make.sh so it can be called
  # before menuconfig.  (It's called again from scripts/make.sh just to be sure.)
+--- toybox-0.8.1-bak/scripts/install.sh
++++ toybox-0.8.1/scripts/install.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/mksh
+ 
+ # Grab default values for $CFLAGS and such.
+ 
 --- toybox-0.8.1-bak/scripts/make.sh
 +++ toybox-0.8.1/scripts/make.sh
 @@ -1,4 +1,4 @@
