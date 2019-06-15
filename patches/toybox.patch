@@ -14,7 +14,7 @@
  
  # Grab default values for $CFLAGS and such.
  
-@@ -93,9 +93,10 @@
+@@ -93,9 +93,9 @@
    echo '$BUILD $FILES $LINK'
  }
  
